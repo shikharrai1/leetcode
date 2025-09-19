@@ -58,14 +58,6 @@ class Solution {
     }
 
     // calcSum
-    public int calcSum(TreeNode root){
-        if(root == null){
-            return 0;
-        }
-        int ls = calcSum(root.left);
-        int rs = calcSum(root.right);
-
-        return (root.val + ls + rs);
-    }
+  
 }
  
