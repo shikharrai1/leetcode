@@ -1,20 +1,45 @@
 class MedianFinder {
-List<Integer> list;
+PriorityQueue<Integer> LeftMaxHeap;
+PriorityQueue<Integer> RightMinHeap;
     public MedianFinder() {
-        list = new ArrayList<>();
+        LeftMaxHeap = new PriorityQueue<>(Comparator.reverseOrder());
+        RightMinHeap = new PriorityQueue<>();
     }
     
     public void addNum(int num) {
-        list.add(num);
+        // base case
+        if(LeftMaxHeap.size() == 0){
+            LeftMaxHeap.add(num);
+        }else{
+            // compare 'num' with top of LeftMaxHeap to decide in which heap this 'num' will go
+            if(LeftMaxHeap.peek() > num){
+                // add 'num' in LeftMaxHeap
+                LeftMaxHeap.add(num);
+            }else{
+                // add 'num' in RightMinHeap
+                RightMinHeap.add(num);
+            }
+            // make sure that LeftMaxHeap.size() is either equal to RightMinHeap.size() or LeftMaxHeap.size()-1 is equal to RightMinHeap.size() 
+            // it means difference can be atMost 1
+           if(LeftMaxHeap.size() -1 > RightMinHeap.size()){
+            // move top of LeftMaxHeap into RightMinHeap
+            int temp = LeftMaxHeap.peek();
+            LeftMaxHeap.remove();
+            RightMinHeap.add(temp);
+           }else if(RightMinHeap.size() > LeftMaxHeap.size()){
+            // here if size of RightMinHeap is greater than size of LeftMaxHeap
+            int temp = RightMinHeap.peek();
+            RightMinHeap.remove();
+             LeftMaxHeap.add(temp);
+           }
+        }
     }
     
     public double findMedian() {
-        Collections.sort(list);
-        int size = list.size();
-        if(list.size() % 2 != 0){
-            return list.get(size/2);
+        if(LeftMaxHeap.size()  == RightMinHeap.size()){
+            return (LeftMaxHeap.peek() + RightMinHeap.peek())/2.0;
         }else{
-            return (list.get(size/2)+list.get(size/2-1))/2.0;
+            return LeftMaxHeap.peek();
         }
     }
 }
