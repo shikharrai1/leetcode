@@ -8,15 +8,15 @@ class Solution {
       int maxOccurenceFre = -1;
 
       for(int f=1; f<=s.length(); f++){
-            int currFre = 0;
+            int currFreCount = 0;
             for(int i=0; i<fre.length; i++){
                 
                 if(fre[i] == f){
-                    currFre++;
+                    currFreCount++;
                 }
             }
-         if(currFre >= maxOccurence){
-            maxOccurence = currFre;
+         if(currFreCount >= maxOccurence){
+            maxOccurence = currFreCount;
             maxOccurenceFre = f;
          }
       }
