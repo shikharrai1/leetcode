@@ -16,6 +16,22 @@ class Solution {
      }
     // Solve
     public void Solve(String curr, int n, List<String>result){
+        //
+            int OpenParen = 0;
+            int CloseParen = 0;
+        for(int i=0; i<curr.length(); i++){
+            if(curr.charAt(i) == ')' && OpenParen == 0){
+                return;
+            }
+            if(curr.charAt(i) == '('){
+                OpenParen++;
+            }else{
+                CloseParen++;
+            }
+        }
+        if(OpenParen > n || CloseParen > n){
+            return;
+        }
         // base case
         if(curr.length() == 2*n){
             if(isValid(curr)){
