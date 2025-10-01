@@ -15,23 +15,8 @@ class Solution {
     return count == 0;
      }
     // Solve
-    public void Solve(String curr, int n, List<String>result){
+    public void Solve(String curr, int n, List<String>result,int open,int close){
         //
-            int OpenParen = 0;
-            int CloseParen = 0;
-        for(int i=0; i<curr.length(); i++){
-            if(curr.charAt(i) == ')' && OpenParen == 0){
-                return;
-            }
-            if(curr.charAt(i) == '('){
-                OpenParen++;
-            }else{
-                CloseParen++;
-            }
-        }
-        if(OpenParen > n || CloseParen > n){
-            return;
-        }
         // base case
         if(curr.length() == 2*n){
             if(isValid(curr)){
@@ -39,14 +24,20 @@ class Solution {
             }
             return;
         }
-        Solve(curr+"(",n,result);
-      
+        if(open < n){
+           
+            Solve(curr+"(",n,result,open+1,close);
+        }
+        if(close < open){
+           
+            Solve(curr+")",n,result,open,close+1);
+        }
      
-        Solve(curr+")",n,result);   
+           
     }
     public List<String> generateParenthesis(int n) {
         List<String> result = new ArrayList<>();
-        Solve("",n,result);
+        Solve("",n,result,0,0);
         return result;
     }
 }
