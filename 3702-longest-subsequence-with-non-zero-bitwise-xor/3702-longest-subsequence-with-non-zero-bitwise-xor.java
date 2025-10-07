@@ -1,6 +1,6 @@
 class Solution {
     public int longestSubsequence(int[] nums) {
-        boolean isAllZero = false;
+        boolean isAllZero = true;
         int xor = 0;
         for(int i=0; i<nums.length; i++){
             if(nums[i] != 0){
