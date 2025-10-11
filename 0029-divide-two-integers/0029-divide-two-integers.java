@@ -1,32 +1,30 @@
-public class Solution {
+class Solution {
     public int divide(int dividend, int divisor) {
-        // Handle overflow
-        if (dividend == Integer.MIN_VALUE && divisor == -1) {
+        if(dividend == divisor) return 1;
+        boolean sign  = true; // +ve
+        if(dividend >= 0 && divisor < 0 || dividend <= 0 && divisor > 0) sign = false;
+
+       long n = Math.abs((long) dividend);
+       long d = Math.abs((long) divisor);
+
+
+        long ans = 0;
+        while(n >= d){
+          int count = 0;
+          while(n >= d<<(count+1)){
+            count++;
+          }
+          n -= (d<<count);
+          ans += 1L<<count;
+        }
+        ans = sign ? ans : -ans;
+        // 
+        if(ans > Integer.MAX_VALUE){
             return Integer.MAX_VALUE;
         }
-
-        // Determine the sign
-        boolean negative = (dividend < 0) ^ (divisor < 0);
-
-        // Convert to long to avoid overflow and use absolute values
-        long ldividend = Math.abs((long) dividend);
-        long ldivisor = Math.abs((long) divisor);
-
-        int result = 0;
-
-        while (ldividend >= ldivisor) {
-            long temp = ldivisor;
-            int multiple = 1;
-
-            while (ldividend >= (temp << 1)) {
-                temp <<= 1;
-                multiple <<= 1;
-            }
-
-            ldividend -= temp;
-            result += multiple;
+        if(ans < Integer.MIN_VALUE){
+            return Integer.MIN_VALUE;
         }
-
-        return negative ? -result : result;
+        return (int)ans;
     }
 }
