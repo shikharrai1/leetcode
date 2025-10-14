@@ -25,7 +25,7 @@ class ExamTracker {
                 ei = mid;
             }
         }
-        return ei;
+        return si; // or return ei;
     }
     public long totalScore(int startTime, int endTime) {
         int leftIdx = binarySearch(startTime);
