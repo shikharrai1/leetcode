@@ -16,7 +16,9 @@ class ExamTracker {
 
         while(si < ei){
             int mid = (si+ei)/2;
-
+             if(timeScore.get(mid)[0] == time){
+                return mid;
+            }
             if(timeScore.get(mid)[0] < time){
                 si = mid+1;
             }else{
