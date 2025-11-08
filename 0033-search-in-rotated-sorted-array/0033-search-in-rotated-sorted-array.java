@@ -11,7 +11,7 @@ class Solution {
    if(nums[pivot] == target){
          return pivot;
    }
-   if(nums[0] <= target){
+   if(target >= nums[0]){
     return BS(nums, target, 0, pivot-1);
    
    }
