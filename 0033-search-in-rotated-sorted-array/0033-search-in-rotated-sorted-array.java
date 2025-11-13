@@ -31,7 +31,7 @@ while(si <= ei){
     // check if 1st half is sorted
     if(nums[si] <= nums[mid]){
         // see if target exists in this range i.e., b/w si and ei of nums array
-        if(nums[si] <= target && target <= nums[mid-1]){
+        if(si < mid && nums[si] <= target && target <= nums[mid-1]){
             // if yes then simply apply BS to get the index of target
              return BS(nums, target, si, mid-1);
         }else{
@@ -42,7 +42,7 @@ while(si <= ei){
     }else{
         // if first half is not sorted then definitely second half is sorted
         // now check if target exists in the range i.e., b/w mid+1 and ei of nums array
-        if(nums[mid+1] <= target && target <= nums[ei]){
+        if(mid < ei && nums[mid+1] <= target && target <= nums[ei]){
             return BS(nums, target, mid+1, ei);
         }else{
             ei = mid-1;
@@ -52,7 +52,7 @@ while(si <= ei){
 return -1;
  }
 
- 
+
  public static int findPivot(int nums[]){
   int si = 0;
     int ei = nums.length-1;
