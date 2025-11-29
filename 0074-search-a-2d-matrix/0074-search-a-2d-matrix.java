@@ -15,12 +15,14 @@ class Solution {
         // return false;
 
            //--------------------App2------------------------
+           int m = matrix[0].length;
            for(int i=0; i<matrix.length; i++){
 
             // now check if target lies in the row somewhere from 1st to last element
-            if(matrix[i][0] <= target && matrix[i][matrix[0].length-1] >= target){
+            if(matrix[i][0] <= target && matrix[i][m-1] >= target){
              
                 return BS(matrix[i], target);
+
             }
            }
            return false;
