@@ -14,28 +14,27 @@ class Solution {
 //     }
 // }
 // return -1;
-//--------------------------App2--------------------------------
-        // List<Integer> list = new ArrayList<>();
-        // for(int i=0; i<nums.length; i++){
-        //     list.add(nums[i]);
-        // }
-        // for(int i=0; i<=nums.length; i++){
-        //     if(!(list.contains(i))){
-        //         return i;
-        //     }
-        // }
-        // return -1;
 
-//--------------------------App3--------------------------------
-int present[] = new int[nums.length+1];
-for(int i=0; i<nums.length; i++){
-    present[nums[i]]++;
-}
-   for(int i=0; i<present.length; i++){
-    if(present[i] == 0){
-        return i;
+//--------------------------App2------------------------------------
+// int present[] = new int[nums.length+1];
+// for(int i=0; i<nums.length; i++){
+//     present[nums[i]]++;
+// }
+//    for(int i=0; i<present.length; i++){
+//     if(present[i] == 0){
+//         return i;
+//     }
+//    }
+//    return -1;
+
+//----------------------------------App3------------------------------------
+int n = nums.length;
+    int OriginalSum = (n*(n+1))/2;
+    // calc curr Sum
+    int ActualSum = 0;
+    for(int x : nums){
+        ActualSum += x;
     }
-   }
-   return -1;
+    return OriginalSum-ActualSum;
     }
 }
