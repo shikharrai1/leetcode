@@ -1,6 +1,6 @@
 class Solution {
     public int removeDuplicates(int[] nums) {
-//--------------------------App1 Brute Force -----------------------------------
+//--------------------------App1 Brute Force -----------------------------
     //     Set<Integer> set = new LinkedHashSet<>();
     //     for(int i=0; i<nums.length; i++){
     //         set.add(nums[i]);
@@ -11,19 +11,15 @@ class Solution {
     //         i++;
     //     }
     //     return i;
-  
 
-//------------------------------- App2 Optimal Sol -----------------------------------
-int i = 0;
-int j = 0;
-while(j < nums.length-1){
-    while(j < nums.length-1 && nums[j] == nums[i]){
-        j++;
-   }
-    if(nums[i] != nums[j]){
-      i++;
-      nums[i] = nums[j];
-     }
+
+//------------------------------- App2 Optimal Sol ------------------------
+int i=0;
+for(int j=1; j<nums.length; j++){
+    if(nums[j] != nums[i]){
+        i++;
+        nums[i] = nums[j];
+    }
 }
 return i+1;
 }
