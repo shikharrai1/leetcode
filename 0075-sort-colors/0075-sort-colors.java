@@ -14,11 +14,11 @@ class Solution {
     for(int i=0; i<cntZero; i++){
         nums[i] = 0;
     }
-     for(int i=0; i<cntOne; i++){
-        nums[i+cntZero] = 1;
+     for(int i=cntZero; i<cntZero+cntOne; i++){
+        nums[i] = 1;
     }
-   for(int i=0; i<cntTwo; i++){
-        nums[i+cntOne+cntZero] = 2;
+   for(int i=cntOne+cntZero; i<cntOne+cntZero+cntTwo; i++){
+        nums[i] = 2;
     }
     }
 }
