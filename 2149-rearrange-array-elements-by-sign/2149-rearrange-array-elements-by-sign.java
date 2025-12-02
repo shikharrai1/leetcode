@@ -1,28 +1,27 @@
 class Solution {
     public int[] rearrangeArray(int[] nums) {
-        List<Integer> list = new ArrayList<>();
-        // first add positives in the list
-        for(int i=0; i<nums.length; i++){
+    int [] positives = new int[nums.length/2];
+    int [] negatives = new int[nums.length/2];
+        //add positive elemenst in positives arr and negative element in negatives arr
+        for(int i=0,j=0,k = 0; i<nums.length; i++){
             if(nums[i] > 0){
-                list.add(nums[i]);
+                positives[j] = nums[i];
+                j++;
+            }else{
+                negatives[k] = nums[i];
+                 k++;
             }
         }
-        for(int i = 0; i<nums.length; i++){
-            if(nums[i] < 0){
-                list.add(nums[i]);
-            }
-        }
+     
+        // an array to return the answer
         int ans[] = new int[nums.length];
         int i =  0; // to iterate on +ve elements
-        int j = list.size()/2; // to iterate on -ve elements
-        int k = 0; // to iteraye over ans array
-        while(k < ans.length){
-            ans[k] = list.get(i);
+        int j = 0; // to iterate on -ve elements
+        int k = 0; // to iterate over ans array
+        for(; k<ans.length; k++,i++,j++){
+            ans[k] = positives[i];
             k++;
-            ans[k] = list.get(j);
-            k++;
-            i++;
-            j++;
+            ans[k] = negatives[j];
         }
         return ans;
     }
