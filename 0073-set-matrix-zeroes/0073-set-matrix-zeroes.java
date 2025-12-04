@@ -21,7 +21,7 @@ class Solution {
         //     }
         // }
    
-        // xxxxxxxxxxxxxxxxxxxxxxx---Better Sol(1)---xxxxxxxxxxxxxxxxxxxxx
+        // xxxxxxxxxxxxxxxxxxxxxxx---Better Sol(1 Me)---xxxxxxxxxxxxxxxxxxxxx
         // List<int[]> list = new ArrayList<>();
         // for(int i=0; i<matrix.length; i++){
         //     for(int j=0; j<matrix[0].length; j++){
@@ -52,20 +52,13 @@ class Solution {
             }
         }
     }
-    // now traverse row and col and mark those row and col entirely '0' where true is present
-    for(int i=0; i<row.length; i++){
-       if(row[i]){
-         for(int j=0; j<matrix[0].length; j++){
-            matrix[i][j] = 0;
-        }
-       }
-    }
-           for(int i=0; i<col.length; i++){
-       if(col[i]){
-         for(int j=0; j<matrix.length; j++){
-            matrix[j][i] = 0;
-        }
-       }
+    // now traverse the matrix again and mark those cell 0 for which either row is true or col is true
+    for(int i=0; i<matrix.length; i++){
+          for(int j=0; j<matrix[0].length; j++){
+            if(row[i] || col[j]){
+                matrix[i][j] = 0;
+            }
+          }
     }
     }
     // markRow()
