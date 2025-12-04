@@ -82,8 +82,10 @@ class Solution {
     // Now iterate the matrix from (1,1) to (n-1,m-1) ignoring 0th row and 0th col for every cell (i,j) check if matrix[i][0] is 0 or matrix[0][j] is 0 if yes then mark matrix[i][j] = 0;
     for(int i=1; i<matrix.length; i++){
         for(int j=1; j<matrix[0].length; j++){
-            if(matrix[i][0] == 0 || matrix[0][j] == 0){
+            if(matrix[i][j] != 0){
+                if(matrix[i][0] == 0 || matrix[0][j] == 0){
                 matrix[i][j] = 0;
+            }
             }
         }
     }
