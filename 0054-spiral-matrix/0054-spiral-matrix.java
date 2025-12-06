@@ -12,28 +12,28 @@ class Solution {
                 list.add(matrix[top][i]);
             }
             top++;
-           if(top <= bottom){
+         
              for(int i = top; i<=bottom; i++){
                 list.add(matrix[i][right]);
             }
-           }
+           
             right--;
        
            if(top <= bottom && right >=0){
               for(int i=right; i>=left; i--){
                 list.add(matrix[bottom][i]);
             }
+            bottom--;
            }
            
-            bottom--;
+            
           
             if(left <= right){
                  for(int i=bottom; i>=top; i--){
                 list.add(matrix[i][left]);
             }
+             left++;
             }
-           
-            left++;
         }
         return list;
     }
