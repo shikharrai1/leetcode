@@ -3,6 +3,11 @@ class Solution {
         int ans[] = new int[nums.length];
         for(int i=0; i<nums.length; i++){
             int num = nums[i];
+            if(num < 0){
+                int dis = Math.abs(num);
+                ans[i] = dis;
+                continue;
+            }
             String bin = Integer.toBinaryString(num);
             if(isPalindrome(bin)){
                 ans[i] = 0;
