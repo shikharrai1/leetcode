@@ -1,54 +1,42 @@
 class Solution {
-       static class Source {
-        int dist;
-        long units;
-        Source(int d, long u) {
-            dist = d;
-            units = u;
-        }
-    }
     public long minMoves(int[] balance) {
-        int n = balance.length;
-
-        long total = 0;
-        int negIdx = -1;
-
-        for (int i = 0; i < n; i++) {
-            total += balance[i];
-            if (balance[i] < 0) negIdx = i;
-        }
-
-       // when total sum is < 0
-        if (total < 0) return -1;
-
-        // if array has no negative values 
-        if (negIdx == -1) return 0;
-
-        long need = -balance[negIdx];
-
-        List<Source> sources = new ArrayList<>();
-
-        for (int i = 0; i < n; i++) {
-            if (i == negIdx || balance[i] == 0) continue;
-
-            int d = Math.abs(i - negIdx);
-            int dist = Math.min(d, n - d); // circular distance
-            sources.add(new Source(dist, balance[i]));
-        }
-
-        // Sort by distance (nearest first)
-        Collections.sort(sources, (a, b) -> Integer.compare(a.dist, b.dist));
-
         long moves = 0;
-
-        for (Source s : sources) {
-            if (need == 0) break;
-
-            long take = Math.min(need, s.units);
-            moves += take * s.dist;
-            need -= take;
+        int n = balance.length;
+        int negIdx = -1;
+        long sum = 0;
+        for(int i=0; i<n; i++){
+            sum += balance[i];
+            if(balance[i] < 0) negIdx = i;
         }
 
-        return need == 0 ? moves : -1;
+                // base cases
+        if(negIdx == -1) return 0;
+
+        if(sum < 0) return -1;
+
+        int disOfDonar = 1; //  distance b/w negIdx and it's left and right donars is 1 initially
+        int leftDonarIdx = (negIdx-1+n)%n;
+        int rightDonarIdx = (negIdx+1)%n;
+        int val = -balance[negIdx]; // this is the exact amount needed to make balance[i] 0 which is smallest nonNegative
+     
+while(val > 0){
+    // take from left
+    if(balance[leftDonarIdx] > 0){
+        int min = Math.min(balance[leftDonarIdx], val);
+        val -= min;
+        moves += min*disOfDonar;
+        balance[leftDonarIdx] -= min;
+    }
+    if(val > 0 && balance[rightDonarIdx] > 0){
+        int min = Math.min(balance[rightDonarIdx], val);
+        val -= min;
+        moves += min*disOfDonar;
+        balance[rightDonarIdx] -= min;
+    }
+    leftDonarIdx = (leftDonarIdx-1+n)%n;
+    rightDonarIdx = (rightDonarIdx+1)%n;
+    disOfDonar+=1;
+}
+return moves;
     }
 }
