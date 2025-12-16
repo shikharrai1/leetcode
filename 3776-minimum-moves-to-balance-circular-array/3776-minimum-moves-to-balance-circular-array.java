@@ -18,10 +18,10 @@ class Solution {
             if (balance[i] < 0) negIdx = i;
         }
 
-        // Impossible case
+       // when total sum is < 0
         if (total < 0) return -1;
 
-        // Already balanced
+        // if array has no negative values 
         if (negIdx == -1) return 0;
 
         long need = -balance[negIdx];
@@ -29,7 +29,7 @@ class Solution {
         List<Source> sources = new ArrayList<>();
 
         for (int i = 0; i < n; i++) {
-            if (i == negIdx || balance[i] <= 0) continue;
+            if (i == negIdx || balance[i] == 0) continue;
 
             int d = Math.abs(i - negIdx);
             int dist = Math.min(d, n - d); // circular distance
