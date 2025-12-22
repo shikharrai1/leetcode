@@ -1,40 +1,19 @@
 class Solution {
     public int minOperations(int[] nums) {
-        int ops = 0;
-        int n = nums.length;
-         HashMap<Integer, Integer> freq = new HashMap();
-        int dupCount = 0;
-
-        for(int num : nums){
-            int count = freq.getOrDefault(num, 0)+1;
-            freq.put(num, count);
-            if(count == 2){
-                dupCount++;
+        Set<Integer> set = new HashSet<>();
+        int i=nums.length-1;
+        for(; i>=0; i--){
+            if(!set.add(nums[i])){
+                 // Duplicate found
+                  break;
             }
         }
-
-        int index = 0;
-
-        while(dupCount > 0 && index < n){
-            ops++;
-
-            for(int i=0; i<3 && index < n ; i++){
-                int val = nums[index];
-                int count = freq.get(val);
-
-                if(count == 2){
-                    dupCount--;
-                }
-
-                freq.put(val, count-1);
-
-                if(count - 1 == 0){
-                    freq.remove(val);
-                }
-                index++;
-            }
-        }
-        return ops;
+        // first duplicate found at index 'i'
+        // we have to remove elements upto index 'i'
+        // So count number of operations needed to remove 1st 'i+1' elements of the array
+         // In one operation we can remove 3 elements
+         // So number of operation needed will be...
+         int ops = (i+1)/3 + ((i+1)%3 != 0 ? 1 : 0);
+         return ops;
     }
-
 }
