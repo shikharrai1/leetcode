@@ -1,40 +1,61 @@
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
-        List<List<Integer>> ans = new ArrayList<>();
-        Arrays.sort(nums);
+        // ---------------App1(Brute Force)--------------------
+        // List<List<Integer>> ans = new ArrayList<>();
+        // Arrays.sort(nums);
+        // for(int i=0; i<nums.length; i++){
+        //     if(i > 0 && nums[i] == nums[i-1]) continue;
+        //     int sum = 0;
+        //     int j = i+1;
+        //     int k = nums.length-1;
+
+        //     while(j < k){
+        //         sum  = nums[i] + nums[j] + nums[k];
+        //         if(sum < 0){
+        //             j++;
+        //         }else if(sum > 0){
+        //             k--;
+        //         }else{
+        //             // sum == 0
+        //             List<Integer> temp = new ArrayList<>();
+        //             temp.add(nums[i]);
+        //             temp.add(nums[j]);
+        //             temp.add(nums[k]);
+
+        //             ans.add(temp);
+        //             j++;
+        //             k--;
+
+        //             while(j < k && nums[j] == nums[j-1]){
+        //                 j++;
+        //             }
+        //             // while(j < k && nums[k] == nums[k+1]){
+        //             //     k--;
+        //             // }
+        //         }
+        //     }
+        // }
+        // return ans;
+
+        //-----------------App2(Better Sol)--------------------
+        Set<List<Integer>> st = new HashSet<>();
         for(int i=0; i<nums.length; i++){
-            if(i > 0 && nums[i] == nums[i-1]) continue;
-            int sum = 0;
-            int j = i+1;
-            int k = nums.length-1;
-
-            while(j < k){
-                sum  = nums[i] + nums[j] + nums[k];
-                if(sum < 0){
-                    j++;
-                }else if(sum > 0){
-                    k--;
-                }else{
-                    // sum == 0
-                    List<Integer> temp = new ArrayList<>();
-                    temp.add(nums[i]);
-                    temp.add(nums[j]);
-                    temp.add(nums[k]);
-
-                    ans.add(temp);
-                    j++;
-                    k--;
-
-                    // while(j < k && nums[j] == nums[j-1]){
-                    //     j++;
-                    // }
-                    while(j < k && nums[k] == nums[k+1]){
-                        k--;
-                    }
-                }
+            HashMap<Integer,Character> hm = new HashMap<>();
+            for(int j=i+1; j<nums.length; j++){
+            int third = -(nums[i]+nums[j]);
+            if(hm.containsKey(third)){
+                // create triplet
+                List<Integer> list = new ArrayList<>();
+                list.add(nums[i]);
+                list.add(nums[j]);
+                list.add(third);
+                Collections.sort(list);
+                st.add(list);
+            }
+            hm.put(nums[j],'#');
             }
         }
-        return ans;
+        return new ArrayList<>(st);
         // Set<List<Integer>> ans = new HashSet<>();
         // int n = nums.length;
         // for(int i=0; i<n; i++){
