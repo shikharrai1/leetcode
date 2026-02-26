@@ -27,10 +27,8 @@ class Solution {
 
         for(int i=0; i<n; i++){
             char ch = s.charAt(i);
-            // count the frequencies of this character from the two string
-            Integer count1 = map1.get(ch);
-            Integer count2 = map2.getOrDefault(ch,0);
-            if(!count1.equals(count2)){
+      
+            if(!map1.get(ch).equals(map2.getOrDefault(ch, 0))){
                  return false;
             } 
         }
