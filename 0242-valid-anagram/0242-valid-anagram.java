@@ -26,7 +26,11 @@ class Solution {
         // now select one String out of 's' and 't' and then iterate over that string and mathch the frequency from both map1 and map2
 
         for(int i=0; i<n; i++){
-            if(map1.get(s.charAt(i)) != map2.get(s.charAt(i))){
+            char ch = s.charAt(i);
+            // count the frequencies of this character from the two string
+            Integer count1 = map1.get(ch);
+            Integer count2 = map2.getOrDefault(ch,0);
+            if(!count1.equals(count2)){
                  return false;
             } 
         }
