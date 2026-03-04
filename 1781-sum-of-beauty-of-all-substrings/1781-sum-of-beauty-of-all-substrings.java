@@ -3,18 +3,19 @@ class Solution {
         int ans = 0;
         for(int i=0; i<s.length(); i++){
             for(int j=i+1; j<=s.length(); j++){
-                int cnt = cntBeauty(s.substring(i,j));
-                if(cnt != -1){
-                    ans += cnt;
-                }
+                ans += cntBeauty(s.substring(i,j));
+             
+                    
+             
             }
         }
         return ans;
     }
     // function to count beauty of a string
     int cntBeauty(String str){
+
       int arr[] = new int[26];
-    //   Arrays.fill(arr,0);
+ 
       for(int i=0; i<str.length(); i++){
         int index = str.charAt(i)-'a';
         arr[index]++;
@@ -29,8 +30,6 @@ class Solution {
           }
       }
       
-    
-  
         int diff = max-min;
       
       return diff;
