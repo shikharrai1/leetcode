@@ -30,7 +30,7 @@ class Solution {
       }
       int diff = -1;
       // now check if there is valid max and min
-      if((max != Integer.MAX_VALUE && min != Integer.MIN_VALUE) && (max != min)){
+      if((max != Integer.MAX_VALUE && min != Integer.MIN_VALUE)){
          diff = max-min;
       }
       return diff;
