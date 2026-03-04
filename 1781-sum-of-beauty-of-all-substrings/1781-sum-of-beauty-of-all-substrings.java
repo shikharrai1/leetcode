@@ -14,7 +14,7 @@ class Solution {
     // function to count beauty of a string
     int cntBeauty(String str){
       int arr[] = new int[26];
-      Arrays.fill(arr,0);
+    //   Arrays.fill(arr,0);
       for(int i=0; i<str.length(); i++){
         int index = str.charAt(i)-'a';
         arr[index]++;
