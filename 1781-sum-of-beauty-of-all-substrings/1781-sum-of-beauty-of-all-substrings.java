@@ -28,11 +28,11 @@ class Solution {
         min = Math.min(min, arr[i]);
           }
       }
-      int diff = -1;
-      // now check if there is valid max and min
-      if((max != Integer.MAX_VALUE && min != Integer.MIN_VALUE)){
-         diff = max-min;
-      }
+      
+    
+  
+        int diff = max-min;
+      
       return diff;
     }
 }
